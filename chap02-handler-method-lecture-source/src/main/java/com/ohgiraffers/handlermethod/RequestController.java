@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Map;
 
 @Controller
@@ -166,6 +168,33 @@ public class RequestController {
     public String logout2(SessionStatus sessionStatus){
         sessionStatus.setComplete();
         return "request/loginResult";
+    }
+
+    @GetMapping("body")
+    public void body(){}
+
+    /* comment.
+    *   @RequestBody
+    *   해당 어노테이션은 http 본문 자체를 읽는 부분을
+    *   모델로 변환시켜주는 어노테이션이다.
+    *   출력을 해보니 쿼리스트링 형태로 문자열이 전달된다.
+    *   -> key 와 value 형태로 값이 전달 되고 있다
+    *   나중에 나올 개념인 JSON(자바스크립트객체표현식) 으로 전달이 되면
+    *   Jackson 컨버터 : 자바스크립트 객체 <--> 자바 객체
+    *   자동 변환해주어 프론트엔드 서버(js 기반) 백엔드 서버(java 기반)
+    *   간의 데이터 전송을 할 수 있게 해준다.
+    *   주로 Rest API 를 사용하여 만들 때 많이 사용하며
+    *   일반적인 form 태그에서는 거의 사용하지 않는다.
+    * */
+    @PostMapping("body")
+    public void bodyTest(@RequestBody String body) throws UnsupportedEncodingException {
+        System.out.println(body);
+        /* comment.
+        *   넘어온 값을 보면 알 수 없이 변환이 되어 있다.
+        *   이 것을 encoding 되어있다 라고 말을 하며
+        *   해석을 하기 위해서는 decoding 을 해야 한다.
+        *  */
+        System.out.println(URLDecoder.decode(body,"UTF-8"));
     }
 }
 
