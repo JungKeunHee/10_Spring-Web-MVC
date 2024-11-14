@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>뷰 리졸버를 이용한 뷰 페이지 랜더링</h1>
+  <hr>
+  <h3>문자열로 뷰 이름 반환하기</h3>
+  <button onclick="location.href='string'">문자열로 view 반환</button>
+  <hr>
+  <h3>문자열로 redirect 하기</h3>
+  <button onclick="location.href='string-redirect'">문자열로 redirect</button>
+  <hr>
+  <h3>문자열로 뷰 이름 반환하면서 리다이렉트 시 값 유지하기</h3>
+  <button onclick="location.href='string-redirect-attr'">리다이렉트 시 값 유지</button>
+  <script>
+    const flashMessage = `[[${flashMessage}]]`;
+    console.log(flashMessage);
+    if (flashMessage){
+      alert(flashMessage);
+    }
+  </script>
+  <hr>
+  <h3>ModelAndView 로 뷰이름 지정해서 반환하기</h3>
+  <button onclick="location.href='modelandview'">ModelAndView 객체 사용해서 반환</button>
+  <hr>
+  <h3>ModelAndView 로 리다이렉트 && 값 전달</h3>
+  <button onclick="location.href='modelandview-redirect-attr'">ModelAndView 로 redirect && attr</button>
+  <script>
+    const flashMessage = `[[${flashMessage}]]`;
+    console.log(flashMessage);
+    if (flashMessage){
+      alert(flashMessage);
+    }
+  </script>
+</body>
+</html>
