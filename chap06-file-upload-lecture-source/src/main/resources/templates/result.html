@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 th:text="${message}"></h1>
+    <div th:if="${img != null}">
+        <img th:src="${img}" width="300" height="300">
+    </div>
+    <div th:else>
+        <div th:each="img : ${imgs}">
+            <img th:src="${img}" width="300" height="300">
+        </div>
+    </div>
+</body>
+</html>
