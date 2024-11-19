@@ -49,5 +49,10 @@
         <li th:text="${memberMap['2']['age']}"></li>
         <li th:text="${memberMap['3'].getGender()}"></li>
     </ul>
+
+    <h3>Spring Security 를 사용한 인증 여부 확인</h3>
+    <p>타임리프 문법에서 시큐리티 적용 시 로그인과 로그아웃에 대한 이벤트를 사용할 수 있다</p>
+    <th:block sec:authorize="isAuthenticated()">로그인 했음</th:block>
+    <th:block sec:authorize="isAuthenticated() == false">로그인 하지 않았음</th:block>
 </body>
 </html>
