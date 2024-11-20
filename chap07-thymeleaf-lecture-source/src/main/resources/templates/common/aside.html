@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <aside th:fragment="asideFragment(parameter1, parameter2)" class="aside">
+        <ul>
+            <li th:text="${parameter1}">사이드 메뉴1</li>
+            <li th:text="${parameter2}">사이드 메뉴2</li>
+        </ul>
+    </aside>
+</body>
+</html>
