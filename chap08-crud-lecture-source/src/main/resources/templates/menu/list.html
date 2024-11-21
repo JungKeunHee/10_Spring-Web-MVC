@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>메뉴코드</th>
+            <th>메뉴이름</th>
+            <th>메뉴가격</th>
+            <th>카테고리 번호</th>
+            <th>판매상태</th>
+        </tr>
+        <tr th:each="menu : ${menuList}">
+            <td th:text="${menu.code}"></td>
+            <td th:text="${menu.name}"></td>
+            <td th:text="${menu.price}"></td>
+            <td th:text="${menu.categoryCode}"></td>
+            <td th:text="${menu.orderableStatus}"></td>
+        </tr>
+    </table>
+</body>
+</html>
