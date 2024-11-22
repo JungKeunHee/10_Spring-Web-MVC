@@ -5,6 +5,12 @@
     <title>Title</title>
 </head>
 <body>
+    <script>
+        const message = `[[${successMessage}]]`;
+        if(message) {
+            alert(message);
+        }
+    </script>
     <table border="1">
         <tr>
             <th>메뉴코드</th>
@@ -14,7 +20,9 @@
             <th>판매상태</th>
         </tr>
         <tr th:each="menu : ${menuList}">
-            <td th:text="${menu.code}"></td>
+            <td>
+                <a th:href="@{/menu/code(code=${menu.code})}" th:text="${menu.code}"></a>
+            </td>
             <td th:text="${menu.name}"></td>
             <td th:text="${menu.price}"></td>
             <td th:text="${menu.categoryCode}"></td>

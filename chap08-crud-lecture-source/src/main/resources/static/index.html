@@ -2,11 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>타이머 예제</title>
+    <style>
+        #clock {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        let startTime; // 시작 시간을 저장할 변수
+        let elapsedTime = 0; // 경과 시간을 저장할 변수
+        let timerInterval; // 타이머 인터벌 저장 변수
+
+        function updateClock() {
+            const totalSeconds = Math.floor((Date.now() - startTime) / 1000) + elapsedTime;
+            const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+            const secs = String(totalSeconds % 60).padStart(2, '0');
+            const currentTime = `${hours}:${minutes}:${secs}`;
+            document.getElementById('clock').textContent = currentTime;
+        }
+
+        function startTimer() {
+            // 로컬 스토리지에서 경과 시간 가져오기
+            const storedElapsedTime = localStorage.getItem('elapsedTime');
+            if (storedElapsedTime) {
+                elapsedTime = parseInt(storedElapsedTime, 10);
+            }
+            startTime = Date.now(); // 현재 시간을 시작 시간으로 설정
+
+            timerInterval = setInterval(() => {
+                updateClock(); // 시간 업데이트
+            }, 1000); // 1초마다 호출
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval); // 타이머 중지
+        }
+
+        window.onload = () => {
+            // 페이지 로드 시 타이머 시작
+            startTimer();
+            // 페이지 언로드 시 경과 시간 저장
+            window.addEventListener('beforeunload', () => {
+                const totalSeconds = Math.floor((Date.now() - startTime) / 1000) + elapsedTime;
+                localStorage.setItem('elapsedTime', totalSeconds); // 경과 시간 저장
+            });
+        };
+
+        window.onunload = () => {
+            stopTimer(); // 페이지가 언로드될 때 타이머 중지
+        };
+    </script>
 </head>
 <body>
-  <h1 align="center">🍰Ohgiraffers Restaurant🍰</h1>
-  <button onclick="location.href='menu/list'">전체 메뉴 조회</button>
-  <button onclick="location.href='menu/regist'">신규 메뉴 등록</button>
+<h1 align="center">🍰Ohgiraffers Restaurant🍰</h1>
+<div id="clock">00:00:00</div> <!-- 초기값을 00:00:00으로 설정 -->
+
+<div align="center">
+    <br>
+    <button onclick="location.href='menu/list'">전체 메뉴 조회</button>
+    <button onclick="location.href='menu/regist'">신규 메뉴 등록</button>
+    <button onclick="location.href='menu/join/list'">메뉴, 카테고리 JOIN 조회</button>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const message = `[[${successMessage}]]`;
+    if(message) {
+        alert(message);
+    }
+</script>
+<div align="center">
+  <h1 th:text="'🤚 메뉴코드 ' + ${menu.code} + '번의 상세페이지🤚'"></h1>
+  <h3 th:text="'메뉴 이름 : ' + ${menu.name}"></h3>
+  <h3 th:text="'메뉴 가격 : ' + ${menu.price}"></h3>
+  <h3 th:text="'카테고리 번호 : ' + ${menu.categoryCode}"></h3>
+  <h3 th:text="'판매 상태 : ' + ${menu.orderableStatus}"></h3>
+    <button><a th:href="@{/menu/update(code=${menu.code})}" style="text-decoration: none;">수정</a></button>
+    <button><a th:href="@{/menu/delete(code=${menu.code})}" style="text-decoration: none;">삭제</a></button>
+</div>
+
+</body>
+</html>
